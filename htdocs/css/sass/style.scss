@@ -1,0 +1,104 @@
+@import "variables";
+@import "fonts";
+@import "mixins";
+@import "reset";
+@import "font-awesome/font-awesome";
+
+
+//  ==========================================================================
+//  Primary Styles
+//  ==========================================================================
+html {height:100%;}
+body {background:$grey; color:$text-color; height:100%; font-family: 'Roboto', sans-serif; font-size:15px;}
+button {background:$green; color:$text-color; border:none; padding:20px 80px; font-weight:700; text-transform:uppercase; font-size:14px; outline:none;}
+h1 {font-weight:100; font-size:40px; margin:$innerPadding 0;}
+h2 {font-weight:100; font-size:40px; margin:0;}
+h3 {font-weight:300; font-size:28px; margin:0 0 $gutterWidth;}
+h4 {font-size:16px;}
+a {color:$green; text-decoration:none;
+	&:hover {border-bottom:1px solid $green;}
+}
+nav ul {margin:0; padding:0; list-style:none;}
+p {line-height:24px;}
+
+//  ==========================================================================
+//  Classes
+//  ==========================================================================
+.container {max-width:$containerWidth; margin:0 auto;}
+.group {@include group;}
+.center {text-align:center;}
+
+
+//  ==========================================================================
+//  Layout
+//  ==========================================================================
+section {padding:$gutterWidth 0; @include vendor(box-sizing, border-box);
+	&:nth-child(even) {background-color:$grey-dark;}
+	&.home {padding:0; height:100%;
+		.container {padding-top:200px; background:url('../images/iphone-effects.png') no-repeat right 100px; background-size: 50% auto; height:100%;}
+		img {max-height:70px;}
+		p {max-width:50%; margin:$innerPadding 0;}
+		button {@include vendor(box-shadow, 0 5px 20px rgba(0,0,0,0.7))}
+	}
+	&.about {background:$grey-dark url('../images/app-views.png') no-repeat 120% center; background-size: 50% auto; min-height:640px;
+		.container {}
+		p {max-width:50%;}
+	}
+	&.steps {@include group;
+		.group {
+			div {width:23.3332%; margin:0 5%; float:left; color:$grey-light; text-align:center;
+				img {max-width:80px;}
+				span {font-size:150px; font-weight:700; line-height:112px;}
+				p {color:#6c7077}
+			}
+		}
+	}
+	&.faq {
+		ul {padding:0; list-style:none;
+			li {border-top:1px solid $grey-light;
+				h4 {height:70px; line-height:70px; margin:0 20px; cursor:pointer; font-weight:300;
+					&:after {@include font-awesome('\f078'); float:right; line-height:inherit; font-size:12px;}
+				}
+				p {margin:0 20px 20px; display:none; color:#6c7077}
+				&.open {
+					h4:after {content:'\f077'}
+					p {display:block;}
+				}
+			}
+		}
+	}
+	&.apply {
+		p {margin:$innerPadding auto; max-width:510px;}
+		img {height:16px; vertical-align:middle; margin-top:-2px;}
+		button+p {font-style:italic; font-size:13px;}
+	}
+@include breakpoint(mobile){padding-left:$innerPadding; padding-right:$innerPadding; text-align:center;
+	&.home {padding:0 $innerPadding; height:auto;
+		img {max-height:50px;}
+		.container {padding-top:$innerPadding; padding-bottom:500px; background-position:center bottom; background-size:auto 460px;}
+		p {max-width:100%;}
+	}
+	&.about {background-size:auto 350px; padding-bottom:390px; background-position:0 bottom;
+		p {max-width:100%;}
+	}
+	&.steps {
+		.group div {float:none; width:100%; margin:$gutterWidth 0;}
+	}
+	&.faq {text-align:left;
+		ul li h4, ul li p {margin-left:0; margin-right:0;}
+	}
+}}
+footer {background:$grey-dark; color:#a5a6a9; padding:$innerPadding 0; border-bottom:$gutterWidth solid $grey; line-height:24px;
+	.container {max-width:1280px;}
+	nav {float:right;
+		li {display:inline-block;
+			&:before {content:'|'}
+			&:first-child {margin:0 10px 0 0;
+				&:before {display:none;}
+			}
+			a {color:#a5a6a9; text-transform:uppercase; margin-left:10px;}
+		}
+	}
+@include breakpoint(tablet) {text-align:center; padding:$innerPadding;
+	nav {float:none; margin-top:$innerPadding/2;}
+}}
